@@ -4,14 +4,11 @@ import com.clt.Order_Service.DTO.OrderResponseDTO;
 import com.clt.Order_Service.DTO.ProductDTO;
 import com.clt.Order_Service.Entity.Order;
 import com.clt.Order_Service.Repository.OrderRepository;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
