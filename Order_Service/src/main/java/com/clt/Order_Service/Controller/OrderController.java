@@ -24,7 +24,7 @@ public class OrderController {
     @PostMapping("/placeOrder")
     public Mono<ResponseEntity<OrderResponseDTO>> placeOrder(@RequestBody Order order){
         return webClientBuilder.build().get()
-                .uri("http://localhost:8081/products" +order.getProductId()).retrieve()
+                .uri("http://localhost:8081/products/" +order.getProductId()).retrieve()
                 .bodyToMono(ProductDTO.class).map(productDTO -> {
                     OrderResponseDTO responseDTO = new OrderResponseDTO();
                     responseDTO.setOrderId(order.getId());
@@ -36,6 +36,7 @@ public class OrderController {
                     responseDTO.setTotalPrice(order.getQuantity() * productDTO.getPrice());
 
                     orderRepository.save(order);
+                    responseDTO.setOrderId(order.getId());
                     return ResponseEntity.ok(responseDTO) ;
                 });
     }
