@@ -40,9 +40,11 @@ public class OrderController {
                     return ResponseEntity.ok(responseDTO) ;
                 });
     }
-@GetMapping
-    public List<Order> getAllOrder(){
-     return orderRepository.findAll();
-}
+    @GetMapping("/{id}")
+    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
+        return orderRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 }
